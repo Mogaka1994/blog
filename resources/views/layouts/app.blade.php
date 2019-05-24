@@ -73,46 +73,47 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                        <ul class="list-group">
+                    <ul class="list-group">
                             <li class="list-group-item">
-                                <a href="/home">Home</a>
+                                 <a href="/home">Home</a> 
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('posts')}}">All Posts</a>
+                                 <a href="{{route('posts')}}">All Posts</a> 
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('categories')}}">All categories</a>
+                                 <a href="{{route('categories')}}">All categories</a>
+                            </li>
+                            <li class="list-group-item"> 
+                                <a href="{{route('tags')}}">Tags</a> 
+                            </li> 
+                            <li class="list-group-item">
+                                 <a href="{{route('users')}}">Users</a> 
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('tags')}}">Tags</a>
+                                 <a href="{{route('user.profile')}}">My Profile</a> 
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('users')}}">Users</a>
+                                 <a href="{{route('user.create')}}">New Users</a>
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('user.create')}}">New Users</a>
+                              <a href="{{route('tag.create')}}">Create Tag</a>
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('tag.create')}}">Create Tag</a>
+                                 <a href="{{route('category.create')}}">Create category</a>
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('category.create')}}">Create category</a>
+                                 <a href="{{route('posts.create')}}">Create Post</a>
                             </li>
                             <li class="list-group-item">
-                                    <a href="{{route('posts.create')}}">Create Post</a>
-                            </li>
-                        
-                            <li class="list-group-item">
-                                    <a href="{{route('posts.trashed')}}">All  thrashed Posts</a>
-                            </li>
-                        </ul>
-                    <div class="col-lg-8">
-                        Post
-                    </div>
+                                 <a href="{{route('posts.trashed')}}">All thrashed Posts</a>
+                            </li> 
+                    </ul>
+                </div>
+                <div class="col-lg-8">
+                    @yield('content');
                 </div>
             </div>
         </div>
-       
     </div>
 
     <!-- Scripts -->

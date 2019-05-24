@@ -59,8 +59,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'PostsController@index',
         'as'=>'posts'
     ]);
-    Route::get('/posts/trashed',[
-        'uses'=>'PostsController@trashed',
+    Route::get('/posts/thrashed',[
+        'uses'=>'PostsController@thrashed',
         'as'=>'posts.trashed'
     ]);
     Route::get('/posts/kill/{$id}',[
