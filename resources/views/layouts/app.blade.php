@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link htref="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -118,7 +120,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{asset('js/toastr.min.js')}}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js">
         <script>
             @if (Session::has('success'))
             toastr.success("{{Session::get ('success')}}");    
@@ -128,5 +130,6 @@
             @endif
         </script>
     </script>
+    @yield('scripts')
 </body>
 </html>
