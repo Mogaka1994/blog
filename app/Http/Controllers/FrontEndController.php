@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tag;
 use App\Category;
+use Session;
 
 class FrontEndController extends Controller
 {
