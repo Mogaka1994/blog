@@ -74,10 +74,11 @@
         </nav>
         <div class="container">
             <div class="row">
+                @if(Auth::check())
                 <div class="col-sm-4">
                     <ul class="list-group">
                             <li class="list-group-item">
-                                 <a href="/home">Home</a> 
+                                 <a href="{{route('home')}}">Home</a> 
                             </li>
                             <li class="list-group-item">
                                  <a href="{{route('posts')}}">All Posts</a> 
@@ -87,16 +88,18 @@
                             </li>
                             <li class="list-group-item"> 
                                 <a href="{{route('tags')}}">Tags</a> 
-                            </li> 
-                            <li class="list-group-item">
-                                 <a href="{{route('users')}}">Users</a> 
                             </li>
                             <li class="list-group-item">
-                                 <a href="{{route('user.profile')}}">My Profile</a> 
-                            </li>
-                            <li class="list-group-item">
-                                 <a href="{{route('user.create')}}">New Users</a>
-                            </li>
+                                    <a href="{{route('user.profile')}}">My Profile</a> 
+                               </li>
+                            @if(Auth::user()->admin)
+                                    <li class="list-group-item">
+                                        <a href="{{route('users')}}">Users</a> 
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="{{route('user.create')}}">New Users</a>
+                                    </li>
+                            @endif
                             <li class="list-group-item">
                               <a href="{{route('tag.create')}}">Create Tag</a>
                             </li>
@@ -107,10 +110,16 @@
                                  <a href="{{route('posts.create')}}">Create Post</a>
                             </li>
                             <li class="list-group-item">
-                                 <a href="{{route('posts.trashed')}}">All thrashed Posts</a>
-                            </li> 
+                                 <a href="{{route('posts.trashed')}}">All Trashed Posts</a>
+                            </li>
+                            @if(Auth::user()->admin)
+                            <li class="list-group-item">
+                                    <a href="{{route('settings')}}">Settings</a>
+                               </li>
+                            @endif
                     </ul>
                 </div>
+                @endif
                 <div class="col-sm-8">
                     @yield('content');
                 </div>

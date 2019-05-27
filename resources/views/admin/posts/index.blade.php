@@ -5,16 +5,21 @@
         <th>Image</th>
         <th>Title</th>
         <th>Edit</th>
-        <th>Thrash</th>
+        <th>Trash</th>
     </thead>
     <tbody>
     @if($posts->count()>0)
     @foreach($posts as $post)
     <tr>
         <td><img src="{{$post->featured}}" alt="{{$post->title}}" width="50px" height="90px"></td>
-        <td>{{$post->title}}</td>
-        <td>Editing</td>
-        <td><a href="{{route('post.delete',['id'=>$post->id])" class="btn btn-danger">Deleting</a></td>
+        <td>
+            {{$post->title}}
+        </td>
+        <td>
+            <a href="{{route('post.edit',['id'=>$post->id])" class="btn btn-info">Edit</a></td>
+        </td>
+        <td>
+            <a href="{{route('post.delete',['id'=>$post->id])" class="btn btn-danger">Delete</a></td>
     </tr>
     @endforeach
     @else

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Post;
+use Tag;
 use App\Category;
 use Session;
 
@@ -30,12 +32,14 @@ class PostsController extends Controller
         //
 
         $categories=Category::all();
-        if($categories->count()==0){
+        $tag=Tag::all();
+        if($categories->count()==0||$tag->count()==0){
             Session::flash('info','You must enter categories before posting');
             return redirect()->back();
 
         }
-        return view('admin.posts.create')->with('categories',$categories);
+        return view('admin.posts.create')->with('categories',$categories)
+                                         ->with('tags',$tag);
     }
 
     /**
@@ -63,8 +67,10 @@ class PostsController extends Controller
             'featured'=>'uploads/posts'.$featured_new_name,
             'content'=>$request->content,
             'category_id'=>$request->category_id,
-            'slug'=>str_slug($request->title)
+            'slug'=>str_slug($request->title),
+            'user_id'=>Auth::id()
         ]);
+        $post->tag()->attach($request->tags);
         Session::flash('success','Post Created Successfully');
         return redirect()->back();
     }
@@ -89,7 +95,9 @@ class PostsController extends Controller
     public function edit($id)
     {
       $post=Post::find($id);
-      return view('admin.posts.edit')->with('posts',$post);
+      return view('admin.posts.edit')->with('posts',$post)
+                                     ->with('categories',Category::all())
+                                     ->with('tags',Tag::all());
     }
 
     /**
@@ -119,7 +127,7 @@ class PostsController extends Controller
         $post->content=$request->content;
         $post->category_id=$request->category_id;
         $post->save();
-        Session::flash('success','Post Update Successfully');
+        Session::flash('success','Post Updated Successfully');
         return redirect()->route('posts');
     }
 
@@ -136,7 +144,7 @@ class PostsController extends Controller
         Session::flash('success','Your Post was deleted Successfully');
         return redirect()->back();
     }
-    public function thrashed(){
+    public function trashed(){
         $post=Post::onlyThrashed()->get();
         return view('admin.posts.thrashed')->with('posts',$post);
     }

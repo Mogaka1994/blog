@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Post;
+use App\Profile;
 
 class User extends Authenticatable
 {
@@ -15,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','admin'
     ];
 
     /**
@@ -26,7 +28,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function profile(){
+    public function profile()
+    {
         return $this->hasOne('App\Profile');
+    }
+    public function posts()
+    {
+        return $this->hasOne('App\Post');
     }
 }

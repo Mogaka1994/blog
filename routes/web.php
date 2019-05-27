@@ -59,8 +59,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'PostsController@index',
         'as'=>'posts'
     ]);
-    Route::get('/posts/thrashed',[
-        'uses'=>'PostsController@thrashed',
+    Route::get('/posts/trashed',[
+        'uses'=>'PostsController@trashed',
         'as'=>'posts.trashed'
     ]);
     Route::get('/posts/kill/{$id}',[
@@ -167,7 +167,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=> 'SettingsController@update',
         'as'=>'setting.update'
     ]);
-    Route::get('/{slug}',[
+    Route::get('/post/{slug}',[
         'uses'=>'FrontEndController@singlePost',
         'as'=>'post.single'
     ]);

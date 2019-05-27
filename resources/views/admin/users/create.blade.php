@@ -10,13 +10,13 @@
     <form action="{{ route('user.store')}}" method="post">
         {{csrf_field()}}
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" name="name" class="form-control">
+               <label for="name">Name</label>
+               <input type="text" name="name" class="form-control">
         </div>
         <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email"  class="form-control">
-              </div>
+        </div>
         <div class="form-group">
           <div class="text-center">
             <button class="btn btn-success" type="submit">Add User</button>
@@ -25,15 +25,4 @@
     </form>
   </div>
 </div>
-@stop
-@section('styles')
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
-@stop
-@section('scripts')
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('#tag').summernote();
-  });
-  </script>
 @stop

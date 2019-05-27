@@ -20,10 +20,10 @@ class UsersTableSeeder extends Seeder
         ]); 
         App\Profile::create([
             'user_id'=>$user->id,
-            'avatar'=>'uploads/avatar/capture.PNG',
+            'avatar'=>'uploads/avatar/avatar.png',
             'about'=>'Dont think its gonna be smooth',
             'facebook'=>'facebook.com',
-            'youtube'=>'youtube.com',
+            'youtube'=>'youtube.com'
         ]);
     }
 }

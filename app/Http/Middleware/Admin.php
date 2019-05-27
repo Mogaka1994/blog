@@ -17,7 +17,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->admin)
+        if(!Auth::user()->admin)
         {
            Session::flash('info','You dont have admin permissions');
            return redirect()->back();  

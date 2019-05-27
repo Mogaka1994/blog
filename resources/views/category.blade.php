@@ -6,8 +6,7 @@
               <h1 class="stunning-header-title">Category:{{$category->name}}</h1>
           </div>
       </div>
-      <main class="main">
-            
+      <main class="main" 
             <div class="row">
                         <div class="case-item-wrap">
                             @foreach($category->posts as $post)

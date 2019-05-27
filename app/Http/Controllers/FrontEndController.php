@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Tag;
 use App\Category;
 use App\Setting;
-
+use Session;
 class FrontEndController extends Controller
 {
     /**
@@ -17,11 +17,12 @@ class FrontEndController extends Controller
     public function index()
     {
         //
-        return view('index')->with('title',Setting::first()->site_name)
+        return view('index')
+                            ->with('title',Setting::first()->site_name)
                             ->with('categories',Category::take(5)->get())
                             ->with('first_post',Post::orderBy('created_at','desc')->first())
-                            ->with('second_post',Post::orderBy('created_at','desc')->skip(1)->take(1)->get())
-                            ->with('third_post',Post::orderBy('created_at','desc')->skip(2)->take(1)->get())
+                            ->with('second_post',Post::orderBy('created_at','desc')->skip(1)->take(1)->get()->first())
+                            ->with('third_post',Post::orderBy('created_at','desc')->skip(2)->take(1)->get()->first())
                             ->with('career',Category::find(4))
                             ->with('tutorials',Category::find(3))
                             ->with('settings',Setting::first());
@@ -30,7 +31,8 @@ class FrontEndController extends Controller
         $post=Post::where('slug',$slug)->first());
         $next_id=Post::where('id','>',$post->id);
         $prev_id=Post::where('id','<',$post->id);
-        return view('single')->with('post',$post)
+        return view('single')
+                        ->with('post',$post)
                         ->with('title',$post->title)
                         ->with('settings',Setting::first())
                         ->with('categories',Category::take(5)->get())
@@ -42,6 +44,13 @@ class FrontEndController extends Controller
         $category=Category::find($id);
         return view('category')->with('category',$category)
                                ->with('title',$category->name)
+                               ->with('categories',Category::take(5)->get())
+                               ->with('settings',Setting::first());
+    }
+    public function tag($id){
+        $tag=Tag::find($id);
+        return view('tag')->with('tag',$tag)
+                               ->with('title',$tag->tag)
                                ->with('categories',Category::take(5)->get())
                                ->with('settings',Setting::first());
     }
