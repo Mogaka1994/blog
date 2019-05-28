@@ -12,17 +12,17 @@
     @foreach($users as $user)
     <tr>
         <td>
-            <img src="{{asset($user->profile->avatar)}}" alt="" width="60px"  height="60px" style="border-radius:50%;">
+            {{--  <img src="{{asset($user->profile->avatar)}}" alt="" width="60px"  height="60px" style="border-radius:50%;">  --}}
         </td>
         <td>
              {{$user->name}}
         </td>
         <td>
-               @if(user->admin)
+               {{--  @if(user()->admin)  --}}
                <a href="{{route('user.not.admin',['id'=>$user->id])}}" class="btn btn-sx btn-success">Remove Admin</a>
-               @else
+               {{--  @else  --}}
                 <a href="{{route('user.admin',['id'=>$user->id])}}" class="btn btn-sx btn-success">Make Admin</a>
-               @endif
+               {{--  @endif  --}}
         </td>
         <td>
                 Delete

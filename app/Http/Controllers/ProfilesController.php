@@ -80,7 +80,7 @@ class ProfilesController extends Controller
        $user=Auth::user();
        if($request->hasFile('avatar')){
             $avatar=$request->avatar;
-            $avatar_new_name=time().$avatar->getClientOrigin alName();
+            $avatar_new_name=time().$avatar->getClientOriginalName();
             $avatar->move('uploads/avatars',$avatar_new_name);
             $user->profile->$avatar='uploads/avatars/'.$avatar_new_name;
             $user->profile->save();
