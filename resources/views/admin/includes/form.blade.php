@@ -19,9 +19,9 @@
                     </div>
 
                     <div class="images-block">
-                        <img src="img/subscr-gear.png" alt="gear" class="gear">
-                        <img src="img/subscr1.png" alt="mail" class="mail">
-                        <img src="img/subscr-mailopen.png" alt="mail" class="mail-2">
+                        <img src="{{asset('img/subscr-gear.png')}}" alt="gear" class="gear">
+                        <img src="{{asset('img/subscr1.png')}}" alt="mail" class="mail">
+                        <img src="{{asset('img/subscr-mailopen.png')}}" alt="mail" class="mail-2">
                     </div>
                 </div>
             </div>

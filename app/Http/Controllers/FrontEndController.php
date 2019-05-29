@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tag;
 use App\Category;
 use App\Setting;
+use App\Post;
 use Session;
 class FrontEndController extends Controller
 {
@@ -28,7 +29,7 @@ class FrontEndController extends Controller
                             ->with('settings',Setting::first());
     }
     public function singlePost($slug){
-        $post=Post::where('slug',$slug)->first());
+        $post=Post::where('slug',$slug)->first();
         $next_id=Post::where('id','>',$post->id);
         $prev_id=Post::where('id','<',$post->id);
         return view('single')

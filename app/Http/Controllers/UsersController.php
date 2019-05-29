@@ -104,16 +104,18 @@ class UsersController extends Controller
     {
         //
     }
-    public function admin($id){
+    public function admin($id)
+    {
 
-     $user=User::find($id);
-     $user->admin=1;
-     $user->save();
-     Session::flash('success','Successfully aded user permissions');
-     return redirect()->back();
+        $user=User::find($id);
+        $user->admin=1;
+        $user->save();
+        Session::flash('success','Successfully aded user permissions');
+        return redirect()->back();
 
     }
-    public function not_admin($id){
+    public function not_admin($id)
+    {
 
         $user=User::find($id);
         $user->admin=0;
@@ -121,5 +123,5 @@ class UsersController extends Controller
         Session::flash('success','Successfully aded user permissions');
         return redirect()->back();
 
-       }
+    }
 }

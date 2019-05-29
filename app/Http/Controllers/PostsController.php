@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Post;
-use Tag;
+use App\Tag;
 use App\Category;
 use Session;
 
@@ -19,7 +19,7 @@ class PostsController extends Controller
     public function index()
     {
         //
-        return view('admin.posts.index');
+        return view('admin.posts.index')->with('posts',Post::all());
     }
 
     /**
@@ -31,15 +31,16 @@ class PostsController extends Controller
     {
         //
 
-        $categories=Category::all();
+        $categories = Category::all();
         $tag=Tag::all();
-        if($categories->count()==0||$tag->count()==0){
-            Session::flash('info','You must enter categories before posting');
+        if( $categories->count()== 0||$tag->count()== 0 )
+        {
+            Session::flash('info', 'You must enter  a category or tag before posting');
             return redirect()->back();
 
         }
-        return view('admin.posts.create')->with('categories',$categories)
-                                         ->with('tags',$tag);
+        return view('admin.posts.create')->with('categories',Category::all())
+                                         ->with('tags',Tag::all());
     }
 
     /**
@@ -55,16 +56,16 @@ class PostsController extends Controller
             'title'=>'required',
             'featured'=>'required|image',
             'content'=>'required',
-            'category_d'=>'required'
-            
+            'category_id'=>'required'
+
         ]);
             $featured=$request->featured;
             $featured_new_name=time().$featured->getClientOriginalName();
-            $featured->move('uploads/posts',$featured_new_name);
+            $featured->move('uploads/posts/',$featured_new_name);
 
         $post=Post::create([
             'title'=>$request->title,
-            'featured'=>'uploads/posts'.$featured_new_name,
+            'featured'=>'uploads/posts/'.$featured_new_name,
             'content'=>$request->content,
             'category_id'=>$request->category_id,
             'slug'=>str_slug($request->title),
@@ -144,17 +145,20 @@ class PostsController extends Controller
         Session::flash('success','Your Post was deleted Successfully');
         return redirect()->back();
     }
-    public function trashed(){
-        $post=Post::onlyThrashed()->get();
-        return view('admin.posts.thrashed')->with('posts',$post);
+    public function trashed()
+    {
+        $post=Post::onlyTrashed()->get();
+        return view('admin.posts.trashed')->with('posts',$post);
     }
-    public function kill($id){
+    public function kill($id)
+    {
           $post=Post::withTrashed()->where('id',$id)->first();
           $post->forceDelete();
           Session::flash('success','Post deleted permanently');
           return redirect()->back();
     }
-    public function restore($id){
+    public function restore($id)
+    {
         $post=Post::withTrashed()->where('id',$id)->first();
         $post->restore();
         Session:flash('success','Post Restored Successfully');

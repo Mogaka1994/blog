@@ -12,11 +12,12 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         //
-        App\Setting::create([
-           'site_name'=>'Polycarp',
-           'address'=>'Nairobi,Kenya',
-           'contact_email'=>'mogaka.poly@gmail.com',
-           'contact_number'=>'0714593171'
+        App\Profile::create([
+            'user_id'=>$user->id,
+            'avatar'=>'uploads/avatars/avatar.PNG',
+            'about'=>'Dont think its gonna be smooth',
+            'facebook'=>'facebook.com',
+            'youtube'=>'youtube.com'
         ]);
     }
 }

@@ -23,7 +23,7 @@
     </tr>
     @endforeach
     @else
-        <tr> 
+        <tr>
             <th colspan="5" class="text-danger">No published Post </th>
         </tr>
         @endif

@@ -73,7 +73,7 @@ class TagsController extends Controller
         $tag=Tag::find($id);
         return view('admin.tags.edit')->with('tag',$tag);
         Session::flash('success','You successfully updated a tag ');
-        
+
     }
 
     /**

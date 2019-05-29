@@ -7,9 +7,11 @@ use App\Post;
 class Tag extends Model
 {
     protected $fillable=['tag'];
-    public function posts(){
-       
-            return $this->belongsToMany('App\Post');
-       
-    }
+
+    public function posts()
+        {
+
+             return $this->belongsToMany('App\Post');
+
+        }
 }

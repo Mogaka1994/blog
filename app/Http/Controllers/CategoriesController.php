@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Category;
+use App\Post;
 use Session;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-        return view('admin.categories.index')->with('categories',Category::all());
+        return view('admin.categories.index')->with('categories', Category::all());
     }
 
     /**
@@ -26,14 +27,14 @@ class CategoriesController extends Controller
     public function create()
     {
         //
-        return view('admin.categories.create');
+        return view('admin.categories.create')->with('categories',Category::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param\Illuminate\Http\Request$request
+     * @return\Illuminate\Http\Response$request
      */
     public function store(Request $request)
     {
@@ -97,13 +98,15 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
-       $category=Category::where('id',$id);
-       foreach($category->posts as $post){
-           $post->delete();
 
-       }
-        $category->delete($id);
+       $category=Category::where('id',$id)->get();
+        foreach($category->posts as $post)
+            {
+                $post->delete();
+
+            }
+        $category->delete();
+        return redirect()->route('categories');
         Session::flash('success','You successfully deleted a category ');
     }
 }

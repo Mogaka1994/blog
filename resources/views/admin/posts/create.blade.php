@@ -27,7 +27,7 @@
 
         <div class="form-group">
           <label for="category">Select Category</label>
-          <select name="category_id"  id="category" class="form-control" id="category">
+          <select name="category_id" class="form-control" id="category">
             @foreach($categories as $category)
             <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach
@@ -62,7 +62,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
 <script>
     $(document).ready(function() {
-      $('#content').summernote();
+      $('#').summernote();
   });
   </script>
 @stop

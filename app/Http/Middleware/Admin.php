@@ -20,7 +20,7 @@ class Admin
         if(!Auth::user()->admin)
         {
            Session::flash('info','You dont have admin permissions');
-           return redirect()->back();  
+           return redirect()->back();
         }
         return $next($request);
     }
